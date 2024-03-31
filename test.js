@@ -18,7 +18,7 @@
     global = typeof globalThis !== 'undefined' ? globalThis : global || self;
     factory(
       global.TESTS,
-      global,
+      global.parseCss,
       {lines: global.diffString, words: global.diffString},
       global.log,
     );
