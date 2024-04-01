@@ -13,6 +13,11 @@
   }
 }(this, function (exports) {
 
+const config = {
+  tokenizeErrorHandler: null,
+  parseErrorHandler: null,
+};
+
 function between(num, first, last) { return num >= first && num <= last; }
 function digit(code) { return between(code, 0x30,0x39); }
 function hexdigit(code) { return digit(code) || between(code, 0x41,0x46) || between(code, 0x61,0x66); }
@@ -116,6 +121,9 @@ var tokenize = (function () {
   }
   function donothing() {}
   function parseerror() {
+    if (typeof config.tokenizeErrorHandler === 'function') {
+      return config.tokenizeErrorHandler(i, code);
+    }
     console.log("Parse error at index " + i + ", processing codepoint 0x" + code.toString(16) + ".");
     return true;
   }
@@ -844,8 +852,13 @@ class TokenStream {
   }
 }
 
-function parseerror(s, msg) {
-  console.log("Parse error at token " + s.i + ": " + s.nextToken() + ".\n" + msg);
+function parseerror(stream, msg) {
+  const index = stream.i;
+  const token = stream.nextToken();
+  if (typeof config.parseErrorHandler === 'function') {
+    return config.parseErrorHandler(index, token, msg);
+  }
+  console.log("Parse error at token " + index + ": " + token + ".\n" + msg);
   return true;
 }
 
@@ -1369,6 +1382,7 @@ function printIndent(level) {
 }
 
 return {
+  config,
   tokenize,
   IdentToken,
   FunctionToken,
