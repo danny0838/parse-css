@@ -21,14 +21,14 @@ return [
     parser: "",
     css: `\u{20000},\u{0},\uD800,\uDFFF`,
     expected: [
-      {type: "IDENT", value: "\u{20000}"},
-      {type: "COMMA"},
-      {type: "IDENT", value: "\uFFFD"},
-      {type: "COMMA"},
-      {type: "IDENT", value: "\uFFFD"},
-      {type: "COMMA"},
-      {type: "IDENT", value: "\uFFFD"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "\u{20000}"},
+      {TYPE: "COMMA"},
+      {TYPE: "IDENT", value: "\uFFFD"},
+      {TYPE: "COMMA"},
+      {TYPE: "IDENT", value: "\uFFFD"},
+      {TYPE: "COMMA"},
+      {TYPE: "IDENT", value: "\uFFFD"},
+      {TYPE: "EOF"},
     ]
   },
 
@@ -38,1013 +38,1013 @@ return [
   {
     parser: "",
     css: "(",
-    expected: [{type: "OPEN-PAREN"}, {type: "EOF"}],
+    expected: [{TYPE: "OPEN-PAREN"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ")",
-    expected: [{type: "CLOSE-PAREN"}, {type: "EOF"}],
+    expected: [{TYPE: "CLOSE-PAREN"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "[",
-    expected: [{type: "OPEN-SQUARE"}, {type: "EOF"}],
+    expected: [{TYPE: "OPEN-SQUARE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "]",
-    expected: [{type: "CLOSE-SQUARE"}, {type: "EOF"}],
+    expected: [{TYPE: "CLOSE-SQUARE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ",",
-    expected: [{type: "COMMA"}, {type: "EOF"}],
+    expected: [{TYPE: "COMMA"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ":",
-    expected: [{type: "COLON"}, {type: "EOF"}],
+    expected: [{TYPE: "COLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ";",
-    expected: [{type: "SEMICOLON"}, {type: "EOF"}],
+    expected: [{TYPE: "SEMICOLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ")[",
-    expected: [{type: "CLOSE-PAREN"}, {type: "OPEN-SQUARE"}, {type: "EOF"}],
+    expected: [{TYPE: "CLOSE-PAREN"}, {TYPE: "OPEN-SQUARE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "[)",
-    expected: [{type: "OPEN-SQUARE"}, {type: "CLOSE-PAREN"}, {type: "EOF"}],
+    expected: [{TYPE: "OPEN-SQUARE"}, {TYPE: "CLOSE-PAREN"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "{}",
-    expected: [{type: "OPEN-CURLY"}, {type: "CLOSE-CURLY"}, {type: "EOF"}],
+    expected: [{TYPE: "OPEN-CURLY"}, {TYPE: "CLOSE-CURLY"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ",,",
-    expected: [{type: "COMMA"}, {type: "COMMA"}, {type: "EOF"}],
+    expected: [{TYPE: "COMMA"}, {TYPE: "COMMA"}, {TYPE: "EOF"}],
   },
 
   // -- MultipleCharacterTokens
   {
     parser: "",
     css: "~=",
-    expected: [{type: "DELIM", value: '~'}, {type: "DELIM", value: '='}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '~'}, {TYPE: "DELIM", value: '='}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "|=",
-    expected: [{type: "DELIM", value: '|'}, {type: "DELIM", value: '='}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '|'}, {TYPE: "DELIM", value: '='}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "^=",
-    expected: [{type: "DELIM", value: '^'}, {type: "DELIM", value: '='}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '^'}, {TYPE: "DELIM", value: '='}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "$=",
-    expected: [{type: "DELIM", value: '$'}, {type: "DELIM", value: '='}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '$'}, {TYPE: "DELIM", value: '='}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "*=",
-    expected: [{type: "DELIM", value: '*'}, {type: "DELIM", value: '='}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '*'}, {TYPE: "DELIM", value: '='}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "||",
-    expected: [{type: "DELIM", value: '|'}, {type: "DELIM", value: '|'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '|'}, {TYPE: "DELIM", value: '|'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "|||",
-    expected: [{type: "DELIM", value: '|'}, {type: "DELIM", value: '|'}, {type: "DELIM", value: '|'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '|'}, {TYPE: "DELIM", value: '|'}, {TYPE: "DELIM", value: '|'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "<!--",
-    expected: [{type: "CDO"}, {type: "EOF"}],
+    expected: [{TYPE: "CDO"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "<!---",
-    expected: [{type: "CDO"}, {type: "DELIM", value: '-'}, {type: "EOF"}],
+    expected: [{TYPE: "CDO"}, {TYPE: "DELIM", value: '-'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-->",
-    expected: [{type: "CDC"}, {type: "EOF"}],
+    expected: [{TYPE: "CDC"}, {TYPE: "EOF"}],
   },
 
   // -- DelimiterToken
   {
     parser: "",
     css: "^",
-    expected: [{type: "DELIM", value: '^'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '^'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "*",
-    expected: [{type: "DELIM", value: '*'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '*'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "%",
-    expected: [{type: "DELIM", value: '%'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '%'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "~",
-    expected: [{type: "DELIM", value: '~'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '~'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "&",
-    expected: [{type: "DELIM", value: '&'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '&'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "|",
-    expected: [{type: "DELIM", value: '|'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '|'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\x7f",
-    expected: [{type: "DELIM", value: '\x7f'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '\x7f'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\x01",
-    expected: [{type: "DELIM", value: '\x01'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '\x01'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "~-",
-    expected: [{type: "DELIM", value: '~'}, {type: "DELIM", value: '-'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '~'}, {TYPE: "DELIM", value: '-'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "^|",
-    expected: [{type: "DELIM", value: '^'}, {type: "DELIM", value: '|'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '^'}, {TYPE: "DELIM", value: '|'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "$~",
-    expected: [{type: "DELIM", value: '$'}, {type: "DELIM", value: '~'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '$'}, {TYPE: "DELIM", value: '~'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "*^",
-    expected: [{type: "DELIM", value: '*'}, {type: "DELIM", value: '^'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '*'}, {TYPE: "DELIM", value: '^'}, {TYPE: "EOF"}],
   },
 
   // -- WhitespaceTokens
   {
     parser: "",
     css: "   ",
-    expected: [{type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\n\rS",
-    expected: [{type: "WHITESPACE"}, {type: "IDENT", value: "S"}, {type: "EOF"}],
+    expected: [{TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "S"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "   *",
-    expected: [{type: "WHITESPACE"}, {type: "DELIM", value: '*'}, {type: "EOF"}],
+    expected: [{TYPE: "WHITESPACE"}, {TYPE: "DELIM", value: '*'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\r\n\f\t2",
-    expected: [{type: "WHITESPACE"}, {type: "NUMBER", value: 2, isInteger: true}, {type: "EOF"}],
+    expected: [{TYPE: "WHITESPACE"}, {TYPE: "NUMBER", value: 2, type: "integer"}, {TYPE: "EOF"}],
   },
 
   // -- Escapes
   {
     parser: "",
     css: "hel\\6Co",
-    expected: [{type: "IDENT", value: "hello"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "hello"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\26 B",
-    expected: [{type: "IDENT", value: "&B"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "&B"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'hel\\6c o'",
-    expected: [{type: "STRING", value: "hello"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "hello"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'spac\\65\r\ns'",
-    expected: [{type: "STRING", value: "spaces"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "spaces"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "spac\\65\r\ns",
-    expected: [{type: "IDENT", value: "spaces"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "spaces"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "spac\\65\n\rs",
-    expected: [{type: "IDENT", value: "space"}, {type: "WHITESPACE"}, {type: "IDENT", value: "s"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "space"}, {TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "s"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "sp\\61\tc\\65\fs",
-    expected: [{type: "IDENT", value: "spaces"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "spaces"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "hel\\6c  o",
-    expected: [{type: "IDENT", value: "hell"}, {type: "WHITESPACE"}, {type: "IDENT", value: "o"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "hell"}, {TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "o"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "test\\\n",
-    expected: [{type: "IDENT", value: "test"}, {type: "DELIM", value: '\\'}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "test"}, {TYPE: "DELIM", value: '\\'}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "test\\D799",
-    expected: [{type: "IDENT", value: "test\uD799"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "test\uD799"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\E000",
-    expected: [{type: "IDENT", value: "\uE000"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\uE000"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "te\\s\\t",
-    expected: [{type: "IDENT", value: "test"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "test"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "spaces\\ in\\\tident",
-    expected: [{type: "IDENT", value: "spaces in\tident"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "spaces in\tident"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\.\\,\\:\\!",
-    expected: [{type: "IDENT", value: ".,:!"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: ".,:!"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\\r",
-    expected: [{type: "DELIM", value: '\\'}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '\\'}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\\f",
-    expected: [{type: "DELIM", value: '\\'}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '\\'}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\\r\n",
-    expected: [{type: "DELIM", value: '\\'}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '\\'}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "null\\\0",
-    expected: [{type: "IDENT", value: "null\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "null\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "null\\\0\0",
-    expected: [{type: "IDENT", value: "null\uFFFD\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "null\uFFFD\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "null\\0",
-    expected: [{type: "IDENT", value: "null\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "null\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "null\\0",
-    expected: [{type: "IDENT", value: "null\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "null\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "null\\0000",
-    expected: [{type: "IDENT", value: "null\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "null\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "large\\110000",
-    expected: [{type: "IDENT", value: "large\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "large\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "large\\23456a",
-    expected: [{type: "IDENT", value: "large\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "large\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "surrogate\\D800",
-    expected: [{type: "IDENT", value: "surrogate\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "surrogate\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "surrogate\\0DABC",
-    expected: [{type: "IDENT", value: "surrogate\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "surrogate\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\00DFFFsurrogate",
-    expected: [{type: "IDENT", value: "\uFFFDsurrogate"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\uFFFDsurrogate"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\10fFfF",
-    expected: [{type: "IDENT", value: "\u{10ffff}"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\u{10ffff}"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\10fFfF0",
-    expected: [{type: "IDENT", value: "\u{10ffff}0"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\u{10ffff}0"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\\10000000",
-    expected: [{type: "IDENT", value: "\u{100000}00"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\u{100000}00"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "eof\\",
-    expected: [{type: "IDENT", value: "eof\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "eof\uFFFD"}, {TYPE: "EOF"}],
   },
 
   // -- IdentToken
   {
     parser: "",
     css: "simple-ident",
-    expected: [{type: "IDENT", value: "simple-ident"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "simple-ident"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "testing123",
-    expected: [{type: "IDENT", value: "testing123"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "testing123"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "hello!",
-    expected: [{type: "IDENT", value: "hello"}, {type: "DELIM", value: '!'}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "hello"}, {TYPE: "DELIM", value: '!'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "world\x05",
-    expected: [{type: "IDENT", value: "world"}, {type: "DELIM", value: '\x05'}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "world"}, {TYPE: "DELIM", value: '\x05'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "_under score",
-    expected: [{type: "IDENT", value: "_under"}, {type: "WHITESPACE"}, {type: "IDENT", value: "score"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "_under"}, {TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "score"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-_underscore",
-    expected: [{type: "IDENT", value: "-_underscore"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "-_underscore"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-text",
-    expected: [{type: "IDENT", value: "-text"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "-text"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-\\6d",
-    expected: [{type: "IDENT", value: "-m"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "-m"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "--abc",
-    expected: [{type: "IDENT", value: "--abc"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "--abc"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "--",
-    expected: [{type: "IDENT", value: "--"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "--"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "--11",
-    expected: [{type: "IDENT", value: "--11"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "--11"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "---",
-    expected: [{type: "IDENT", value: "---"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "---"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\u2003",  // em-space
-    expected: [{type: "DELIM", value: "\u2003"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: "\u2003"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\u{A0}",  // non-breaking space
-    expected: [{type: "DELIM", value: "\u{A0}"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: "\u{A0}"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\u1234",
-    expected: [{type: "IDENT", value: "\u1234"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\u1234"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\u{12345}",
-    expected: [{type: "IDENT", value: "\u{12345}"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\u{12345}"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\0",
-    expected: [{type: "IDENT", value: "\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "ab\0c",
-    expected: [{type: "IDENT", value: "ab\uFFFDc"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "ab\uFFFDc"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "ab\0c",
-    expected: [{type: "IDENT", value: "ab\uFFFDc"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "ab\uFFFDc"}, {TYPE: "EOF"}],
   },
 
   // -- FunctionToken
   {
     parser: "",
     css: "scale(2)",
-    expected: [{type: "FUNCTION", value: "scale"}, {type: "NUMBER", value: 2, isInteger: true}, {type: "CLOSE-PAREN"}, {type: "EOF"}],
+    expected: [{TYPE: "FUNCTION", value: "scale"}, {TYPE: "NUMBER", value: 2, type: "integer"}, {TYPE: "CLOSE-PAREN"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "foo-bar\\ baz(",
-    expected: [{type: "FUNCTION", value: "foo-bar baz"}, {type: "EOF"}],
+    expected: [{TYPE: "FUNCTION", value: "foo-bar baz"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "fun\\(ction(",
-    expected: [{type: "FUNCTION", value: "fun(ction"}, {type: "EOF"}],
+    expected: [{TYPE: "FUNCTION", value: "fun(ction"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-foo(",
-    expected: [{type: "FUNCTION", value: "-foo"}, {type: "EOF"}],
+    expected: [{TYPE: "FUNCTION", value: "-foo"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "url(\"foo.gif\"",
-    expected: [{type: "FUNCTION", value: "url"}, {type: "STRING", value: "foo.gif"}, {type: "EOF"}],
+    expected: [{TYPE: "FUNCTION", value: "url"}, {TYPE: "STRING", value: "foo.gif"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "foo(  \'bar.gif\'",
-    expected: [{type: "FUNCTION", value: "foo"}, {type: "WHITESPACE"}, {type: "STRING", value: "bar.gif"}, {type: "EOF"}],
+    expected: [{TYPE: "FUNCTION", value: "foo"}, {TYPE: "WHITESPACE"}, {TYPE: "STRING", value: "bar.gif"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "url(  \'bar.gif\'",
-    expected: [{type: "FUNCTION", value: "url"}, {type: "WHITESPACE"}, {type: "STRING", value: "bar.gif"}, {type: "EOF"}],
+    expected: [{TYPE: "FUNCTION", value: "url"}, {TYPE: "WHITESPACE"}, {TYPE: "STRING", value: "bar.gif"}, {TYPE: "EOF"}],
   },
 
   // -- AtKeywordToken
   {
     parser: "",
     css: "@at-keyword",
-    expected: [{type: "AT-KEYWORD", value: "at-keyword"}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "at-keyword"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@testing123",
-    expected: [{type: "AT-KEYWORD", value: "testing123"}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "testing123"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@hello!",
-    expected: [{type: "AT-KEYWORD", value: "hello"}, {type: "DELIM", value: '!'}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "hello"}, {TYPE: "DELIM", value: '!'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@-text",
-    expected: [{type: "AT-KEYWORD", value: "-text"}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "-text"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@--abc",
-    expected: [{type: "AT-KEYWORD", value: "--abc"}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "--abc"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@--",
-    expected: [{type: "AT-KEYWORD", value: "--"}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "--"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@--11",
-    expected: [{type: "AT-KEYWORD", value: "--11"}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "--11"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@---",
-    expected: [{type: "AT-KEYWORD", value: "---"}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "---"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@\\ ",
-    expected: [{type: "AT-KEYWORD", value: " "}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: " "}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@-\\ ",
-    expected: [{type: "AT-KEYWORD", value: "- "}, {type: "EOF"}],
+    expected: [{TYPE: "AT-KEYWORD", value: "- "}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@@",
-    expected: [{type: "DELIM", value: '@'}, {type: "DELIM", value: '@'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '@'}, {TYPE: "DELIM", value: '@'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@2",
-    expected: [{type: "DELIM", value: '@'}, {type: "NUMBER", value: 2, isInteger: true}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '@'}, {TYPE: "NUMBER", value: 2, type: "integer"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "@-1",
-    expected: [{type: "DELIM", value: '@'}, {type: "NUMBER", value: -1, isInteger: true, sign: "-"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '@'}, {TYPE: "NUMBER", value: -1, type: "integer", sign: "-"}, {TYPE: "EOF"}],
   },
 
   // -- UrlToken
   {
     parser: "",
     css: "url(foo.gif)",
-    expected: [{type: "URL", value: "foo.gif"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "foo.gif"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "urL(https://example.com/cats.png)",
-    expected: [{type: "URL", value: "https://example.com/cats.png"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "https://example.com/cats.png"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "uRl(what-a.crazy^URL~this\\ is!)",
-    expected: [{type: "URL", value: "what-a.crazy^URL~this is!"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "what-a.crazy^URL~this is!"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "uRL(123#test)",
-    expected: [{type: "URL", value: "123#test"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "123#test"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "Url(escapes\\ \\\"\\'\\)\\()",
-    expected: [{type: "URL", value: "escapes \"')("}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "escapes \"')("}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "UrL(   whitespace   )",
-    expected: [{type: "URL", value: "whitespace"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "whitespace"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "URl( whitespace-eof ",
-    expected: [{type: "URL", value: "whitespace-eof"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "whitespace-eof"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "URL(eof",
-    expected: [{type: "URL", value: "eof"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "eof"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "url(not/*a*/comment)",
-    expected: [{type: "URL", value: "not/*a*/comment"}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: "not/*a*/comment"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "urL()",
-    expected: [{type: "URL", value: ""}, {type: "EOF"}],
+    expected: [{TYPE: "URL", value: ""}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "uRl(white space),",
-    expected: [{type: "BADURL"}, {type: "COMMA"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "COMMA"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "Url(b(ad),",
-    expected: [{type: "BADURL"}, {type: "COMMA"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "COMMA"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "uRl(ba'd):",
-    expected: [{type: "BADURL"}, {type: "COLON"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "COLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "urL(b\"ad):",
-    expected: [{type: "BADURL"}, {type: "COLON"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "COLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "uRl(b\"ad):",
-    expected: [{type: "BADURL"}, {type: "COLON"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "COLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "Url(b\\\rad):",
-    expected: [{type: "BADURL"}, {type: "COLON"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "COLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "url(b\\\nad):",
-    expected: [{type: "BADURL"}, {type: "COLON"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "COLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "url(/*'bad')*/",
-    expected: [{type: "BADURL"}, {type: "DELIM", value: '*'}, {type: "DELIM", value: '/'}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "DELIM", value: '*'}, {TYPE: "DELIM", value: '/'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "url(ba'd\\))",
-    expected: [{type: "BADURL"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "url(ba'd\\\\))",
-    expected: [{type: "BADURL"}, {type: "CLOSE-PAREN"}, {type: "EOF"}],
+    expected: [{TYPE: "BADURL"}, {TYPE: "CLOSE-PAREN"}, {TYPE: "EOF"}],
   },
 
   // -- StringToken
   {
     parser: "",
     css: "'text'",
-    expected: [{type: "STRING", value: "text"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "text"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\"text\"",
-    expected: [{type: "STRING", value: "text"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "text"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'testing, 123!'",
-    expected: [{type: "STRING", value: "testing, 123!"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "testing, 123!"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'es\\'ca\\\"pe'",
-    expected: [{type: "STRING", value: "es'ca\"pe"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "es'ca\"pe"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'\"quotes\"'",
-    expected: [{type: "STRING", value: "\"quotes\""}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "\"quotes\""}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\"'quotes'\"",
-    expected: [{type: "STRING", value: "'quotes'"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "'quotes'"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\"mismatch'",
-    expected: [{type: "STRING", value: "mismatch'"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "mismatch'"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'text\x05\t\x13'",
-    expected: [{type: "STRING", value: "text\x05\t\x13"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "text\x05\t\x13"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\"end on eof",
-    expected: [{type: "STRING", value: "end on eof"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "end on eof"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'esca\\\nped'",
-    expected: [{type: "STRING", value: "escaped"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "escaped"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\"esc\\\faped\"",
-    expected: [{type: "STRING", value: "escaped"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "escaped"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'new\\\rline'",
-    expected: [{type: "STRING", value: "newline"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "newline"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "\"new\\\r\nline\"",
-    expected: [{type: "STRING", value: "newline"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "newline"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'bad\nstring",
-    expected: [{type: "BADSTRING"}, {type: "WHITESPACE"}, {type: "IDENT", value: "string"}, {type: "EOF"}],
+    expected: [{TYPE: "BADSTRING"}, {TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "string"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'bad\rstring",
-    expected: [{type: "BADSTRING"}, {type: "WHITESPACE"}, {type: "IDENT", value: "string"}, {type: "EOF"}],
+    expected: [{TYPE: "BADSTRING"}, {TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "string"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'bad\r\nstring",
-    expected: [{type: "BADSTRING"}, {type: "WHITESPACE"}, {type: "IDENT", value: "string"}, {type: "EOF"}],
+    expected: [{TYPE: "BADSTRING"}, {TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "string"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'bad\fstring",
-    expected: [{type: "BADSTRING"}, {type: "WHITESPACE"}, {type: "IDENT", value: "string"}, {type: "EOF"}],
+    expected: [{TYPE: "BADSTRING"}, {TYPE: "WHITESPACE"}, {TYPE: "IDENT", value: "string"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'\0'",
-    expected: [{type: "STRING", value: "\uFFFD"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "\uFFFD"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'hel\0lo'",
-    expected: [{type: "STRING", value: "hel\uFFFDlo"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "hel\uFFFDlo"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "'h\\65l\0lo'",
-    expected: [{type: "STRING", value: "hel\uFFFDlo"}, {type: "EOF"}],
+    expected: [{TYPE: "STRING", value: "hel\uFFFDlo"}, {TYPE: "EOF"}],
   },
 
   // -- HashToken
   {
     parser: "",
     css: "#id-selector",
-    expected: [{type: "HASH", value: "id-selector", isIdent: true}, {type: "EOF"}],
+    expected: [{TYPE: "HASH", value: "id-selector", type: "id"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "#FF7700",
-    expected: [{type: "HASH", value: "FF7700", isIdent: true}, {type: "EOF"}],
+    expected: [{TYPE: "HASH", value: "FF7700", type: "id"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "#3377FF",
-    expected: [{type: "HASH", value: "3377FF", isIdent: false}, {type: "EOF"}],
+    expected: [{TYPE: "HASH", value: "3377FF", type: "unrestricted"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "#\\ ",
-    expected: [{type: "HASH", value: " ", isIdent: true}, {type: "EOF"}],
+    expected: [{TYPE: "HASH", value: " ", type: "id"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "# ",
-    expected: [{type: "DELIM", value: '#'}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '#'}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "#\\\n",
-    expected: [{type: "DELIM", value: '#'}, {type: "DELIM", value: '\\'}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '#'}, {TYPE: "DELIM", value: '\\'}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "#\\\r\n",
-    expected: [{type: "DELIM", value: '#'}, {type: "DELIM", value: '\\'}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '#'}, {TYPE: "DELIM", value: '\\'}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "#!",
-    expected: [{type: "DELIM", value: '#'}, {type: "DELIM", value: '!'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '#'}, {TYPE: "DELIM", value: '!'}, {TYPE: "EOF"}],
   },
 
   // -- NumberToken
   {
     parser: "",
     css: "10",
-    expected: [{type: "NUMBER", value: 10, isInteger: true}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 10, type: "integer"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "12.0",
-    expected: [{type: "NUMBER", value: 12, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 12, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "+45.6",
-    expected: [{type: "NUMBER", value: 45.6, isInteger: false, sign: "+"}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 45.6, type: "number", sign: "+"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-7",
-    expected: [{type: "NUMBER", value: -7, isInteger: true, sign: "-"}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: -7, type: "integer", sign: "-"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "010",
-    expected: [{type: "NUMBER", value: 10, isInteger: true}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 10, type: "integer"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "10e0",
-    expected: [{type: "NUMBER", value: 10, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 10, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "12e3",
-    expected: [{type: "NUMBER", value: 12000, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 12000, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "3e+1",
-    expected: [{type: "NUMBER", value: 30, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 30, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "12E-1",
-    expected: [{type: "NUMBER", value: 1.2, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 1.2, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ".7",
-    expected: [{type: "NUMBER", value: 0.7, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 0.7, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-.3",
-    expected: [{type: "NUMBER", value: -0.3, isInteger: false, sign: "-"}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: -0.3, type: "number", sign: "-"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "+637.54e-2",
-    expected: [{type: "NUMBER", value: 6.3754, isInteger: false, sign: "+"}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 6.3754, type: "number", sign: "+"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-12.34E+2",
-    expected: [{type: "NUMBER", value: -1234, isInteger: false, sign: "-"}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: -1234, type: "number", sign: "-"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "+ 5",
-    expected: [{type: "DELIM", value: '+'}, {type: "WHITESPACE"}, {type: "NUMBER", value: 5, isInteger: true}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '+'}, {TYPE: "WHITESPACE"}, {TYPE: "NUMBER", value: 5, type: "integer"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-+12",
-    expected: [{type: "DELIM", value: '-'}, {type: "NUMBER", value: 12, isInteger: true, sign: "+"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '-'}, {TYPE: "NUMBER", value: 12, type: "integer", sign: "+"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "+-21",
-    expected: [{type: "DELIM", value: '+'}, {type: "NUMBER", value: -21, isInteger: true, sign: "-"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '+'}, {TYPE: "NUMBER", value: -21, type: "integer", sign: "-"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "++22",
-    expected: [{type: "DELIM", value: '+'}, {type: "NUMBER", value: 22, isInteger: true, sign: "+"}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '+'}, {TYPE: "NUMBER", value: 22, type: "integer", sign: "+"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "13.",
-    expected: [{type: "NUMBER", value: 13, isInteger: true}, {type: "DELIM", value: '.'}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 13, type: "integer"}, {TYPE: "DELIM", value: '.'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "1.e2",
-    expected: [{type: "NUMBER", value: 1, isInteger: true}, {type: "DELIM", value: '.'}, {type: "IDENT", value: "e2"}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 1, type: "integer"}, {TYPE: "DELIM", value: '.'}, {TYPE: "IDENT", value: "e2"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "2e3.5",
-    expected: [{type: "NUMBER", value: 2000, isInteger: false}, {type: "NUMBER", value: 0.5, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 2000, type: "number"}, {TYPE: "NUMBER", value: 0.5, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "2e3.",
-    expected: [{type: "NUMBER", value: 2000, isInteger: false}, {type: "DELIM", value: '.'}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 2000, type: "number"}, {TYPE: "DELIM", value: '.'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "1000000000000000000000000",
-    expected: [{type: "NUMBER", value: 1e24, isInteger: true}, {type: "EOF"}],
+    expected: [{TYPE: "NUMBER", value: 1e24, type: "integer"}, {TYPE: "EOF"}],
   },
 
   // -- DimensionToken
   {
     parser: "",
     css: "10px",
-    expected: [{type: "DIMENSION", value: 10, isInteger: true, unit: "px"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 10, type: "integer", unit: "px"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "12.0em",
-    expected: [{type: "DIMENSION", value: 12, isInteger: false, unit: "em"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 12, type: "number", unit: "em"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-12.0em",
-    expected: [{type: "DIMENSION", value: -12, isInteger: false, unit: "em", sign: "-"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: -12, type: "number", unit: "em", sign: "-"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "+45.6__qem",
-    expected: [{type: "DIMENSION", value: 45.6, isInteger: false, unit: "__qem", sign: "+"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 45.6, type: "number", unit: "__qem", sign: "+"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "5e",
-    expected: [{type: "DIMENSION", value: 5, isInteger: true, unit: "e"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 5, type: "integer", unit: "e"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "5px-2px",
-    expected: [{type: "DIMENSION", value: 5, isInteger: true, unit: "px-2px"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 5, type: "integer", unit: "px-2px"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "5e-",
-    expected: [{type: "DIMENSION", value: 5, isInteger: true, unit: "e-"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 5, type: "integer", unit: "e-"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "5\\ ",
-    expected: [{type: "DIMENSION", value: 5, isInteger: true, unit: " "}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 5, type: "integer", unit: " "}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "40\\70\\78",
-    expected: [{type: "DIMENSION", value: 40, isInteger: true, unit: "px"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 40, type: "integer", unit: "px"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "4e3e2",
-    expected: [{type: "DIMENSION", value: 4000, isInteger: false, unit: "e2"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 4000, type: "number", unit: "e2"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "0x10px",
-    expected: [{type: "DIMENSION", value: 0, isInteger: true, unit: "x10px"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 0, type: "integer", unit: "x10px"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "4unit ",
-    expected: [{type: "DIMENSION", value: 4, isInteger: true, unit: "unit"}, {type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 4, type: "integer", unit: "unit"}, {TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "5e+",
-    expected: [{type: "DIMENSION", value: 5, isInteger: true, unit: "e"}, {type: "DELIM", value: '+'}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 5, type: "integer", unit: "e"}, {TYPE: "DELIM", value: '+'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "2e.5",
-    expected: [{type: "DIMENSION", value: 2, isInteger: true, unit: "e"}, {type: "NUMBER", value: 0.5, isInteger: false}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 2, type: "integer", unit: "e"}, {TYPE: "NUMBER", value: 0.5, type: "number"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "2e+.5",
-    expected: [{type: "DIMENSION", value: 2, isInteger: true, unit: "e"}, {type: "NUMBER", value: 0.5, isInteger: false, sign: "+"}, {type: "EOF"}],
+    expected: [{TYPE: "DIMENSION", value: 2, type: "integer", unit: "e"}, {TYPE: "NUMBER", value: 0.5, type: "number", sign: "+"}, {TYPE: "EOF"}],
   },
 
   // -- PercentageToken
   {
     parser: "",
     css: "10%",
-    expected: [{type: "PERCENTAGE", value: 10}, {type: "EOF"}],
+    expected: [{TYPE: "PERCENTAGE", value: 10}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "+12.0%",
-    expected: [{type: "PERCENTAGE", value: 12, sign: "+"}, {type: "EOF"}],
+    expected: [{TYPE: "PERCENTAGE", value: 12, sign: "+"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "-48.99%",
-    expected: [{type: "PERCENTAGE", value: -48.99, sign: "-"}, {type: "EOF"}],
+    expected: [{TYPE: "PERCENTAGE", value: -48.99, sign: "-"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "6e-1%",
-    expected: [{type: "PERCENTAGE", value: 0.6}, {type: "EOF"}],
+    expected: [{TYPE: "PERCENTAGE", value: 0.6}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "5%%",
-    expected: [{type: "PERCENTAGE", value: 5}, {type: "DELIM", value: '%'}, {type: "EOF"}],
+    expected: [{TYPE: "PERCENTAGE", value: 5}, {TYPE: "DELIM", value: '%'}, {TYPE: "EOF"}],
   },
 
   // -- UnicodeRangeToken
@@ -1052,203 +1052,203 @@ return [
     parser: "",
     css: "u+012345-123456",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "NUMBER", value: 12345, isInteger: true, sign: "+"},
-      {type: "NUMBER", value: -123456, isInteger: true, sign: "-"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "NUMBER", value: 12345, type: "integer", sign: "+"},
+      {TYPE: "NUMBER", value: -123456, type: "integer", sign: "-"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "U+1234-2345",
     expected: [
-      {type: "IDENT", value: "U"},
-      {type: "NUMBER", value: 1234, isInteger: true, sign: "+"},
-      {type: "NUMBER", value: -2345, isInteger: true, sign: "-"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "U"},
+      {TYPE: "NUMBER", value: 1234, type: "integer", sign: "+"},
+      {TYPE: "NUMBER", value: -2345, type: "integer", sign: "-"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+222-111",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "NUMBER", value: 222, isInteger: true, sign: "+"},
-      {type: "NUMBER", value: -111, isInteger: true, sign: "-"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "NUMBER", value: 222, type: "integer", sign: "+"},
+      {TYPE: "NUMBER", value: -111, type: "integer", sign: "-"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "U+CafE-d00D",
     expected: [
-      {type: "IDENT", value: "U"},
-      {type: "DELIM", value: "+"},
-      {type: "IDENT", value: "CafE-d00D"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "U"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "IDENT", value: "CafE-d00D"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "U+2??",
     expected: [
-      {type: "IDENT", value: "U"},
-      {type: "NUMBER", value: 2, isInteger: true, sign: "+"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "U"},
+      {TYPE: "NUMBER", value: 2, type: "integer", sign: "+"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "U+ab12??",
     expected: [
-      {type: "IDENT", value: "U"},
-      {type: "DELIM", value: "+"},
-      {type: "IDENT", value: "ab12"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "U"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "IDENT", value: "ab12"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+??????",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DELIM", value: "+"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+??",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DELIM", value: "+"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+222+111",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "NUMBER", value: 222, isInteger: true, sign: "+"},
-      {type: "NUMBER", value: 111, isInteger: true, sign: "+"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "NUMBER", value: 222, type: "integer", sign: "+"},
+      {TYPE: "NUMBER", value: 111, type: "integer", sign: "+"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+12345678",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "NUMBER", value: 12345678, isInteger: true, sign: "+"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "NUMBER", value: 12345678, type: "integer", sign: "+"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+123-12345678",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "NUMBER", value: 123, isInteger: true, sign: "+"},
-      {type: "NUMBER", value: -12345678, isInteger: true, sign: "-"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "NUMBER", value: 123, type: "integer", sign: "+"},
+      {TYPE: "NUMBER", value: -12345678, type: "integer", sign: "-"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+cake",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DELIM", value: "+"},
-      {type: "IDENT", value: "cake"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "IDENT", value: "cake"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+1234-gggg",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DIMENSION", value: 1234, isInteger: true, unit: "-gggg", sign: "+"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DIMENSION", value: 1234, type: "integer", unit: "-gggg", sign: "+"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "U+ab12???",
     expected: [
-      {type: "IDENT", value: "U"},
-      {type: "DELIM", value: "+"},
-      {type: "IDENT", value: "ab12"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "U"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "IDENT", value: "ab12"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+a1?-123",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DELIM", value: "+"},
-      {type: "IDENT", value: "a1"},
-      {type: "DELIM", value: "?"},
-      {type: "NUMBER", value: -123, isInteger: true, sign: "-"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "IDENT", value: "a1"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "NUMBER", value: -123, type: "integer", sign: "-"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+1??4",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "NUMBER", value: 1, isInteger: true, sign: "+"},
-      {type: "DELIM", value: "?"},
-      {type: "DELIM", value: "?"},
-      {type: "NUMBER", value: 4, isInteger: true},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "NUMBER", value: 1, type: "integer", sign: "+"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "DELIM", value: "?"},
+      {TYPE: "NUMBER", value: 4, type: "integer"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+z",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DELIM", value: "+"},
-      {type: "IDENT", value: "z"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "IDENT", value: "z"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DELIM", value: "+"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "EOF"},
     ],
   },
   {
     parser: "",
     css: "u+-543",
     expected: [
-      {type: "IDENT", value: "u"},
-      {type: "DELIM", value: "+"},
-      {type: "NUMBER", value: -543, isInteger: true, sign: "-"},
-      {type: "EOF"},
+      {TYPE: "IDENT", value: "u"},
+      {TYPE: "DELIM", value: "+"},
+      {TYPE: "NUMBER", value: -543, type: "integer", sign: "-"},
+      {TYPE: "EOF"},
     ],
   },
 
@@ -1256,37 +1256,37 @@ return [
   {
     parser: "",
     css: "/*comment*/a",
-    expected: [{type: "IDENT", value: "a"}, {type: "EOF"}],
+    expected: [{TYPE: "IDENT", value: "a"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "/**\\2f**//",
-    expected: [{type: "DELIM", value: '/'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '/'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "/**y*a*y**/ ",
-    expected: [{type: "WHITESPACE"}, {type: "EOF"}],
+    expected: [{TYPE: "WHITESPACE"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ",/* \n :) \n */)",
-    expected: [{type: "COMMA"}, {type: "CLOSE-PAREN"}, {type: "EOF"}],
+    expected: [{TYPE: "COMMA"}, {TYPE: "CLOSE-PAREN"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ":/*/*/",
-    expected: [{type: "COLON"}, {type: "EOF"}],
+    expected: [{TYPE: "COLON"}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: "/**/*",
-    expected: [{type: "DELIM", value: '*'}, {type: "EOF"}],
+    expected: [{TYPE: "DELIM", value: '*'}, {TYPE: "EOF"}],
   },
   {
     parser: "",
     css: ";/******",
-    expected: [{type: "SEMICOLON"}, {type: "EOF"}],
+    expected: [{TYPE: "SEMICOLON"}, {TYPE: "EOF"}],
   },
 
   // parseAStylesheet()
@@ -1294,7 +1294,7 @@ return [
     "parser": "parseAStylesheet",
     "css": "",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": []
     }
   },
@@ -1302,7 +1302,7 @@ return [
     "parser": "parseAStylesheet",
     "css": "foo",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": []
     }
   },
@@ -1310,7 +1310,7 @@ return [
     "parser": "parseAStylesheet",
     "css": "foo 4",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": []
     }
   },
@@ -1318,10 +1318,10 @@ return [
     "parser": "parseAStylesheet",
     "css": "@foo",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "foo",
           "prelude": [],
           "declarations": null,
@@ -1334,17 +1334,17 @@ return [
     "parser": "parseAStylesheet",
     "css": "@foo bar; \t/* comment */",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "foo",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "bar"
             }
           ],
@@ -1358,17 +1358,17 @@ return [
     "parser": "parseAStylesheet",
     "css": " /**/ @foo bar{[(4",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "foo",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "bar"
             }
           ],
@@ -1382,14 +1382,14 @@ return [
     "parser": "parseAStylesheet",
     "css": "@foo { bar",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "foo",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [],
@@ -1402,24 +1402,24 @@ return [
     "parser": "parseAStylesheet",
     "css": "@foo [ bar",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "foo",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "BLOCK",
+              "TYPE": "BLOCK",
               "name": "[",
               "value": [
                 {
-                  "type": "WHITESPACE"
+                  "TYPE": "WHITESPACE"
                 },
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "bar"
                 }
               ]
@@ -1435,42 +1435,42 @@ return [
     "parser": "parseAStylesheet",
     "css": " /**/ div > p { color: #aaa;  } /**/ ",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "div"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "DELIM",
+              "TYPE": "DELIM",
               "value": ">"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "p"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "color",
               "value": [
                 {
-                  "type": "HASH",
+                  "TYPE": "HASH",
                   "value": "aaa",
-                  "isIdent": true
+                  "type": "id"
                 }
               ],
               "important": false
@@ -1485,20 +1485,20 @@ return [
     "parser": "parseAStylesheet",
     "css": " /**/ { color: #aaa  ",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "color",
               "value": [
                 {
-                  "type": "HASH",
+                  "TYPE": "HASH",
                   "value": "aaa",
-                  "isIdent": true
+                  "type": "id"
                 }
               ],
               "important": false
@@ -1513,10 +1513,10 @@ return [
     "parser": "parseAStylesheet",
     "css": " /* CDO/CDC are ignored between rules */ <!-- --> {",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [],
           "declarations": [],
           "rules": []
@@ -1528,20 +1528,20 @@ return [
     "parser": "parseAStylesheet",
     "css": " <!-- --> a<!---->{",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "a"
             },
             {
-              "type": "CDO"
+              "TYPE": "CDO"
             },
             {
-              "type": "CDC"
+              "TYPE": "CDC"
             }
           ],
           "declarations": [],
@@ -1554,28 +1554,28 @@ return [
     "parser": "parseAStylesheet",
     "css": "div { color: #aaa; } p{}",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "div"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "color",
               "value": [
                 {
-                  "type": "HASH",
+                  "TYPE": "HASH",
                   "value": "aaa",
-                  "isIdent": true
+                  "type": "id"
                 }
               ],
               "important": false
@@ -1584,10 +1584,10 @@ return [
           "rules": []
         },
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "p"
             }
           ],
@@ -1601,17 +1601,17 @@ return [
     "parser": "parseAStylesheet",
     "css": "div {} -->",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "div"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [],
@@ -1624,10 +1624,10 @@ return [
     "parser": "parseAStylesheet",
     "css": "{}a",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [],
           "declarations": [],
           "rules": []
@@ -1639,16 +1639,16 @@ return [
     "parser": "parseAStylesheet",
     "css": "{}@a",
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [],
           "declarations": [],
           "rules": []
         },
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "a",
           "prelude": [],
           "declarations": null,
@@ -1662,26 +1662,26 @@ return [
         bar: baz;
     }`,
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "foo"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "bar",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "baz"
                 }
               ],
@@ -1696,54 +1696,54 @@ return [
   {
     css: 'foo { bar: rgb(255, 0, 127); }',
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "foo"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "bar",
               "value": [
                 {
-                  "type": "FUNCTION",
+                  "TYPE": "FUNCTION",
                   "name": "rgb",
                   "value": [
                     {
-                      "type": "NUMBER",
+                      "TYPE": "NUMBER",
                       "value": 255,
-                      "isInteger": true,
+                      "type": "integer",
                     },
                     {
-                      "type": "COMMA"
+                      "TYPE": "COMMA"
                     },
                     {
-                      "type": "WHITESPACE"
+                      "TYPE": "WHITESPACE"
                     },
                     {
-                      "type": "NUMBER",
+                      "TYPE": "NUMBER",
                       "value": 0,
-                      "isInteger": true,
+                      "type": "integer",
                     },
                     {
-                      "type": "COMMA"
+                      "TYPE": "COMMA"
                     },
                     {
-                      "type": "WHITESPACE"
+                      "TYPE": "WHITESPACE"
                     },
                     {
-                      "type": "NUMBER",
+                      "TYPE": "NUMBER",
                       "value": 127,
-                      "isInteger": true,
+                      "type": "integer",
                     }
                   ]
                 }
@@ -1759,18 +1759,18 @@ return [
   {
     css: '#foo {}',
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "HASH",
+              "TYPE": "HASH",
               "value": "foo",
-              "isIdent": true
+              "type": "id"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [],
@@ -1782,10 +1782,10 @@ return [
   {
     css: '@media{ }',
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "media",
           "prelude": [],
           "declarations": [],
@@ -1797,41 +1797,41 @@ return [
   {
     css: '.foo {color: red; @media { foo: bar } color: green }',
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "DELIM",
+              "TYPE": "DELIM",
               "value": "."
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "foo"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "color",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "red"
                 }
               ],
               "important": false
             },
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "color",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "green"
                 }
               ],
@@ -1840,20 +1840,20 @@ return [
           ],
           "rules": [
             {
-              "type": "AT-RULE",
+              "TYPE": "AT-RULE",
               "name": "media",
               "prelude": [
                 {
-                  "type": "WHITESPACE"
+                  "TYPE": "WHITESPACE"
                 }
               ],
               "declarations": [
                 {
-                  "type": "DECLARATION",
+                  "TYPE": "DECLARATION",
                   "name": "foo",
                   "value": [
                     {
-                      "type": "IDENT",
+                      "TYPE": "IDENT",
                       "value": "bar"
                     }
                   ],
@@ -1870,23 +1870,23 @@ return [
   {
     css: 'foo{div:hover; color:red{};}',
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "foo"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "div",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "hover"
                 }
               ],
@@ -1895,17 +1895,17 @@ return [
           ],
           "rules": [
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "color"
                 },
                 {
-                  "type": "COLON"
+                  "TYPE": "COLON"
                 },
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "red"
                 }
               ],
@@ -1920,10 +1920,10 @@ return [
   {
     css: `@foo;;foo {}`,
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "foo",
           "prelude": [],
           "declarations": null,
@@ -1935,34 +1935,34 @@ return [
   {
     css: `foo{@foo;;foo {}}`,
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "foo"
             }
           ],
           "declarations": [],
           "rules": [
             {
-              "type": "AT-RULE",
+              "TYPE": "AT-RULE",
               "name": "foo",
               "prelude": [],
               "declarations": null,
               "rules": null
             },
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "foo"
                 },
                 {
-                  "type": "WHITESPACE"
+                  "TYPE": "WHITESPACE"
                 }
               ],
               "declarations": [],
@@ -1976,30 +1976,30 @@ return [
   {
     css: `foo { --div:hover{}}`,
     expected: {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "foo"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "--div",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "hover"
                 },
                 {
-                  "type": "BLOCK",
+                  "TYPE": "BLOCK",
                   "name": "{",
                   "value": []
                 }
@@ -2016,26 +2016,26 @@ return [
     "parser": "parseAStylesheet",
     "css": `p { color: red; } @media print { p { color: green; } }`,
     "expected": {
-      "type": "STYLESHEET",
+      "TYPE": "STYLESHEET",
       "rules": [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "p"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "color",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "red"
                 }
               ],
@@ -2045,40 +2045,40 @@ return [
           "rules": []
         },
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "media",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "print"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [],
           "rules": [
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "p"
                 },
                 {
-                  "type": "WHITESPACE"
+                  "TYPE": "WHITESPACE"
                 },
               ],
               "declarations": [
                 {
-                  "type": "DECLARATION",
+                  "TYPE": "DECLARATION",
                   "name": "color",
                   "value": [
                     {
-                      "type": "IDENT",
+                      "TYPE": "IDENT",
                       "value": "green"
                     }
                   ],
@@ -2114,7 +2114,7 @@ return [
     "css": "@foo",
     "expected": [
       {
-        "type": "AT-RULE",
+        "TYPE": "AT-RULE",
         "name": "foo",
         "prelude": [],
         "declarations": null,
@@ -2127,14 +2127,14 @@ return [
     "css": "@foo bar; \t/* comment */",
     "expected": [
       {
-        "type": "AT-RULE",
+        "TYPE": "AT-RULE",
         "name": "foo",
         "prelude": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "bar"
           }
         ],
@@ -2148,14 +2148,14 @@ return [
     "css": " /**/ @foo bar{[(4",
     "expected": [
       {
-        "type": "AT-RULE",
+        "TYPE": "AT-RULE",
         "name": "foo",
         "prelude": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "bar"
           }
         ],
@@ -2169,11 +2169,11 @@ return [
     "css": "@foo { bar",
     "expected": [
       {
-        "type": "AT-RULE",
+        "TYPE": "AT-RULE",
         "name": "foo",
         "prelude": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ],
         "declarations": [],
@@ -2186,21 +2186,21 @@ return [
     "css": "@foo [ bar",
     "expected": [
       {
-        "type": "AT-RULE",
+        "TYPE": "AT-RULE",
         "name": "foo",
         "prelude": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "BLOCK",
+            "TYPE": "BLOCK",
             "name": "[",
             "value": [
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "bar"
               }
             ]
@@ -2216,39 +2216,39 @@ return [
     "css": " /**/ div > p { color: #aaa;  } /**/ ",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "div"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "DELIM",
+            "TYPE": "DELIM",
             "value": ">"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "p"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ],
         "declarations": [
           {
-            "type": "DECLARATION",
+            "TYPE": "DECLARATION",
             "name": "color",
             "value": [
               {
-                "type": "HASH",
+                "TYPE": "HASH",
                 "value": "aaa",
-                "isIdent": true
+                "type": "id"
               }
             ],
             "important": false
@@ -2263,17 +2263,17 @@ return [
     "css": " /**/ { color: #aaa  ",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [],
         "declarations": [
           {
-            "type": "DECLARATION",
+            "TYPE": "DECLARATION",
             "name": "color",
             "value": [
               {
-                "type": "HASH",
+                "TYPE": "HASH",
                 "value": "aaa",
-                "isIdent": true
+                "type": "id"
               }
             ],
             "important": false
@@ -2288,7 +2288,7 @@ return [
     "css": " /* CDO/CDC are ignored between rules */ <!-- --> {",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [],
         "declarations": [],
         "rules": []
@@ -2300,17 +2300,17 @@ return [
     "css": " <!-- --> a<!---->{",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "a"
           },
           {
-            "type": "CDO"
+            "TYPE": "CDO"
           },
           {
-            "type": "CDC"
+            "TYPE": "CDC"
           }
         ],
         "declarations": [],
@@ -2323,25 +2323,25 @@ return [
     "css": "div { color: #aaa; } p{}",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "div"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ],
         "declarations": [
           {
-            "type": "DECLARATION",
+            "TYPE": "DECLARATION",
             "name": "color",
             "value": [
               {
-                "type": "HASH",
+                "TYPE": "HASH",
                 "value": "aaa",
-                "isIdent": true
+                "type": "id"
               }
             ],
             "important": false
@@ -2350,10 +2350,10 @@ return [
         "rules": []
       },
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "p"
           }
         ],
@@ -2367,14 +2367,14 @@ return [
     "css": "div {} -->",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "div"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ],
         "declarations": [],
@@ -2387,7 +2387,7 @@ return [
     "css": "{}a",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [],
         "declarations": [],
         "rules": []
@@ -2399,13 +2399,13 @@ return [
     "css": "{}@a",
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [],
         "declarations": [],
         "rules": []
       },
       {
-        "type": "AT-RULE",
+        "TYPE": "AT-RULE",
         "name": "a",
         "prelude": [],
         "declarations": null,
@@ -2418,23 +2418,23 @@ return [
     "css": `p { color: red; } @media print { p { color: green; } }`,
     "expected": [
       {
-        "type": "QUALIFIED-RULE",
+        "TYPE": "QUALIFIED-RULE",
         "prelude": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "p"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ],
         "declarations": [
           {
-            "type": "DECLARATION",
+            "TYPE": "DECLARATION",
             "name": "color",
             "value": [
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "red"
               }
             ],
@@ -2444,40 +2444,40 @@ return [
         "rules": []
       },
       {
-        "type": "AT-RULE",
+        "TYPE": "AT-RULE",
         "name": "media",
         "prelude": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "print"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ],
         "declarations": [],
         "rules": [
           {
-            "type": "QUALIFIED-RULE",
+            "TYPE": "QUALIFIED-RULE",
             "prelude": [
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "p"
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
             ],
             "declarations": [
               {
-                "type": "DECLARATION",
+                "TYPE": "DECLARATION",
                 "name": "color",
                 "value": [
                   {
-                    "type": "IDENT",
+                    "TYPE": "IDENT",
                     "value": "green"
                   }
                 ],
@@ -2506,31 +2506,31 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "a",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
           "important": false
         },
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "c",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "d"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "NUMBER",
+              "TYPE": "NUMBER",
               "value": 42,
-              "isInteger": true
+              "type": "integer"
             }
           ],
           "important": true
@@ -2545,11 +2545,11 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "a",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
@@ -2565,26 +2565,26 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "z",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "x"
             },
             {
-              "type": "DELIM",
+              "TYPE": "DELIM",
               "value": "!"
             }
           ],
           "important": false
         },
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "a",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
@@ -2600,11 +2600,11 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "a",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
@@ -2620,11 +2620,11 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "a",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
@@ -2633,14 +2633,14 @@ return [
       ],
       [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "import",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "STRING",
+              "TYPE": "STRING",
               "value": "foo.css"
             }
           ],
@@ -2648,14 +2648,14 @@ return [
           "rules": null
         },
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "import",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "STRING",
+              "TYPE": "STRING",
               "value": "bar.css"
             }
           ],
@@ -2671,11 +2671,11 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "a",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
@@ -2684,27 +2684,27 @@ return [
       ],
       [
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "media",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "screen"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [],
           "rules": [
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "div"
                 }
               ],
@@ -2714,24 +2714,24 @@ return [
           ]
         },
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "media",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "print"
             }
           ],
           "declarations": [],
           "rules": [
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "div"
                 }
               ],
@@ -2749,11 +2749,11 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "a",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
@@ -2762,37 +2762,37 @@ return [
       ],
       [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "DELIM",
+              "TYPE": "DELIM",
               "value": "@"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "media"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "screen"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [],
           "rules": [
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "div"
                 }
               ],
@@ -2802,24 +2802,24 @@ return [
           ]
         },
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "media",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "print"
             }
           ],
           "declarations": [],
           "rules": [
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "div"
                 }
               ],
@@ -2837,11 +2837,11 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "z",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "x"
             }
           ],
@@ -2850,38 +2850,38 @@ return [
       ],
       [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "a"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "c",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "d"
                 }
               ],
               "important": false
             },
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "e",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "f"
                 }
               ],
@@ -2900,25 +2900,25 @@ return [
       [],
       [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "a"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "c",
               "value": [
                 {
-                  "type": "NUMBER",
+                  "TYPE": "NUMBER",
                   "value": 1,
-                  "isInteger": true
+                  "type": "integer"
                 }
               ],
               "important": false
@@ -2936,32 +2936,32 @@ return [
       [],
       [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "a"
             },
             {
-              "type": "COLON"
+              "TYPE": "COLON"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "hover"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "c",
               "value": [
                 {
-                  "type": "NUMBER",
+                  "TYPE": "NUMBER",
                   "value": 1,
-                  "isInteger": true
+                  "type": "integer"
                 }
               ],
               "important": false
@@ -2978,22 +2978,22 @@ return [
     "expected": [
       [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "z",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "x"
             }
           ],
           "important": false
         },
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "e",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "f"
             }
           ],
@@ -3002,27 +3002,27 @@ return [
       ],
       [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "a"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "b"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "c",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "d"
                 }
               ],
@@ -3049,23 +3049,23 @@ return [
       [],
       [
         {
-          "type": "QUALIFIED-RULE",
+          "TYPE": "QUALIFIED-RULE",
           "prelude": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "p"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [
             {
-              "type": "DECLARATION",
+              "TYPE": "DECLARATION",
               "name": "color",
               "value": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "red"
                 }
               ],
@@ -3075,40 +3075,40 @@ return [
           "rules": []
         },
         {
-          "type": "AT-RULE",
+          "TYPE": "AT-RULE",
           "name": "media",
           "prelude": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "print"
             },
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             }
           ],
           "declarations": [],
           "rules": [
             {
-              "type": "QUALIFIED-RULE",
+              "TYPE": "QUALIFIED-RULE",
               "prelude": [
                 {
-                  "type": "IDENT",
+                  "TYPE": "IDENT",
                   "value": "p"
                 },
                 {
-                  "type": "WHITESPACE"
+                  "TYPE": "WHITESPACE"
                 },
               ],
               "declarations": [
                 {
-                  "type": "DECLARATION",
+                  "TYPE": "DECLARATION",
                   "name": "color",
                   "value": [
                     {
-                      "type": "IDENT",
+                      "TYPE": "IDENT",
                       "value": "green"
                     }
                   ],
@@ -3149,7 +3149,7 @@ return [
     "parser": "parseARule",
     "css": "@foo",
     "expected": {
-      "type": "AT-RULE",
+      "TYPE": "AT-RULE",
       "name": "foo",
       "prelude": [],
       "declarations": null,
@@ -3160,14 +3160,14 @@ return [
     "parser": "parseARule",
     "css": "@foo bar; \t/* comment */",
     "expected": {
-      "type": "AT-RULE",
+      "TYPE": "AT-RULE",
       "name": "foo",
       "prelude": [
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "bar"
         }
       ],
@@ -3179,14 +3179,14 @@ return [
     "parser": "parseARule",
     "css": " /**/ @foo bar{[(4",
     "expected": {
-      "type": "AT-RULE",
+      "TYPE": "AT-RULE",
       "name": "foo",
       "prelude": [
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "bar"
         }
       ],
@@ -3198,11 +3198,11 @@ return [
     "parser": "parseARule",
     "css": "@foo { bar",
     "expected": {
-      "type": "AT-RULE",
+      "TYPE": "AT-RULE",
       "name": "foo",
       "prelude": [
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         }
       ],
       "declarations": [],
@@ -3213,21 +3213,21 @@ return [
     "parser": "parseARule",
     "css": "@foo [ bar",
     "expected": {
-      "type": "AT-RULE",
+      "TYPE": "AT-RULE",
       "name": "foo",
       "prelude": [
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "BLOCK",
+          "TYPE": "BLOCK",
           "name": "[",
           "value": [
             {
-              "type": "WHITESPACE"
+              "TYPE": "WHITESPACE"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "bar"
             }
           ]
@@ -3241,39 +3241,39 @@ return [
     "parser": "parseARule",
     "css": " /**/ div > p { color: #aaa;  } /**/ ",
     "expected": {
-      "type": "QUALIFIED-RULE",
+      "TYPE": "QUALIFIED-RULE",
       "prelude": [
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "div"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "DELIM",
+          "TYPE": "DELIM",
           "value": ">"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "p"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         }
       ],
       "declarations": [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "color",
           "value": [
             {
-              "type": "HASH",
+              "TYPE": "HASH",
               "value": "aaa",
-              "isIdent": true
+              "type": "id"
             }
           ],
           "important": false
@@ -3286,17 +3286,17 @@ return [
     "parser": "parseARule",
     "css": " /**/ { color: #aaa  ",
     "expected": {
-      "type": "QUALIFIED-RULE",
+      "TYPE": "QUALIFIED-RULE",
       "prelude": [],
       "declarations": [
         {
-          "type": "DECLARATION",
+          "TYPE": "DECLARATION",
           "name": "color",
           "value": [
             {
-              "type": "HASH",
+              "TYPE": "HASH",
               "value": "aaa",
-              "isIdent": true
+              "type": "id"
             }
           ],
           "important": false
@@ -3309,19 +3309,19 @@ return [
     "parser": "parseARule",
     "css": " /* CDO/CDC are not special */ <!-- --> {",
     "expected": {
-      "type": "QUALIFIED-RULE",
+      "TYPE": "QUALIFIED-RULE",
       "prelude": [
         {
-          "type": "CDO"
+          "TYPE": "CDO"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "CDC"
+          "TYPE": "CDC"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         }
       ],
       "declarations": [],
@@ -3418,7 +3418,7 @@ return [
     "parser": "parseADeclaration",
     "css": "foo:",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [],
       "important": false
@@ -3428,7 +3428,7 @@ return [
     "parser": "parseADeclaration",
     "css": "foo :",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [],
       "important": false
@@ -3438,7 +3438,7 @@ return [
     "parser": "parseADeclaration",
     "css": "\n/**/ foo: ",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [],
       "important": false
@@ -3448,7 +3448,7 @@ return [
     "parser": "parseADeclaration",
     "css": "foo:;",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [],
       "important": false
@@ -3458,7 +3458,7 @@ return [
     "parser": "parseADeclaration",
     "css": " /**/ foo /**/ :",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [],
       "important": false
@@ -3468,7 +3468,7 @@ return [
     "parser": "parseADeclaration",
     "css": "foo:;bar:;",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [],
       "important": false
@@ -3478,13 +3478,13 @@ return [
     "parser": "parseADeclaration",
     "css": "foo: 9000  !Important",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "NUMBER",
+          "TYPE": "NUMBER",
           "value": 9000,
-          "isInteger": true
+          "type": "integer"
         }
       ],
       "important": true
@@ -3494,13 +3494,13 @@ return [
     "parser": "parseADeclaration",
     "css": "foo: 9000  ! /**/\t IMPORTant /**/\f",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "NUMBER",
+          "TYPE": "NUMBER",
           "value": 9000,
-          "isInteger": true
+          "type": "integer"
         }
       ],
       "important": true
@@ -3510,23 +3510,23 @@ return [
     "parser": "parseADeclaration",
     "css": "foo: 9000  /* Dotted capital I */!İmportant",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "NUMBER",
+          "TYPE": "NUMBER",
           "value": 9000,
-          "isInteger": true
+          "type": "integer"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "DELIM",
+          "TYPE": "DELIM",
           "value": "!"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "İmportant"
         }
       ],
@@ -3537,27 +3537,27 @@ return [
     "parser": "parseADeclaration",
     "css": "foo: 9000  !important!",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "NUMBER",
+          "TYPE": "NUMBER",
           "value": 9000,
-          "isInteger": true
+          "type": "integer"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "DELIM",
+          "TYPE": "DELIM",
           "value": "!"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "important"
         },
         {
-          "type": "DELIM",
+          "TYPE": "DELIM",
           "value": "!"
         }
       ],
@@ -3568,19 +3568,19 @@ return [
     "parser": "parseADeclaration",
     "css": "foo: 9000  important",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "NUMBER",
+          "TYPE": "NUMBER",
           "value": 9000,
-          "isInteger": true
+          "type": "integer"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "important"
         }
       ],
@@ -3591,11 +3591,11 @@ return [
     "parser": "parseADeclaration",
     "css": "foo:important",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "important"
         }
       ],
@@ -3606,11 +3606,11 @@ return [
     "parser": "parseADeclaration",
     "css": "foo:{}",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "BLOCK",
+          "TYPE": "BLOCK",
           "name": "{",
           "value": []
         }
@@ -3622,11 +3622,11 @@ return [
     "parser": "parseADeclaration",
     "css": "foo: {}",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "BLOCK",
+          "TYPE": "BLOCK",
           "name": "{",
           "value": []
         }
@@ -3638,11 +3638,11 @@ return [
     "parser": "parseADeclaration",
     "css": "foo:{} ",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "foo",
       "value": [
         {
-          "type": "BLOCK",
+          "TYPE": "BLOCK",
           "name": "{",
           "value": []
         }
@@ -3682,15 +3682,15 @@ return [
     "parser": "parseADeclaration",
     "css": "--foo:bar{}",
     "expected": {
-      "type": "DECLARATION",
+      "TYPE": "DECLARATION",
       "name": "--foo",
       "value": [
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "bar"
         },
         {
-          "type": "BLOCK",
+          "TYPE": "BLOCK",
           "name": "{",
           "value":  []
         }
@@ -3732,7 +3732,7 @@ return [
     "parser": "parseAComponentValue",
     "css": ".",
     "expected": {
-      "type": "DELIM",
+      "TYPE": "DELIM",
       "value": "."
     }
   },
@@ -3740,7 +3740,7 @@ return [
     "parser": "parseAComponentValue",
     "css": "a",
     "expected": {
-      "type": "IDENT",
+      "TYPE": "IDENT",
       "value": "a"
     }
   },
@@ -3748,9 +3748,9 @@ return [
     "parser": "parseAComponentValue",
     "css": "/**/ 4px",
     "expected": {
-      "type": "DIMENSION",
+      "TYPE": "DIMENSION",
       "value": 4,
-      "isInteger": true,
+      "type": "integer",
       "unit": "px"
     }
   },
@@ -3758,43 +3758,43 @@ return [
     "parser": "parseAComponentValue",
     "css": "rgba(100%, 0%, 50%, .5)",
     "expected": {
-      "type": "FUNCTION",
+      "TYPE": "FUNCTION",
       "name": "rgba",
       "value": [
         {
-          "type": "PERCENTAGE",
+          "TYPE": "PERCENTAGE",
           "value": 100
         },
         {
-          "type": "COMMA"
+          "TYPE": "COMMA"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "PERCENTAGE",
+          "TYPE": "PERCENTAGE",
           "value": 0
         },
         {
-          "type": "COMMA"
+          "TYPE": "COMMA"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "PERCENTAGE",
+          "TYPE": "PERCENTAGE",
           "value": 50
         },
         {
-          "type": "COMMA"
+          "TYPE": "COMMA"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "NUMBER",
+          "TYPE": "NUMBER",
           "value": 0.5,
-          "isInteger": false
+          "type": "number"
         }
       ]
     }
@@ -3803,45 +3803,45 @@ return [
     "parser": "parseAComponentValue",
     "css": " /**/ { foo: bar; @baz [)",
     "expected": {
-      "type": "BLOCK",
+      "TYPE": "BLOCK",
       "name": "{",
       "value": [
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "foo"
         },
         {
-          "type": "COLON"
+          "TYPE": "COLON"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "bar"
         },
         {
-          "type": "SEMICOLON"
+          "TYPE": "SEMICOLON"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "AT-KEYWORD",
+          "TYPE": "AT-KEYWORD",
           "value": "baz"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "BLOCK",
+          "TYPE": "BLOCK",
           "name": "[",
           "value": [
             {
-              "type": "CLOSE-PAREN"
+              "TYPE": "CLOSE-PAREN"
             }
           ]
         }
@@ -3867,15 +3867,15 @@ return [
     "css": "/*/*///** /* **/*//* ",
     "expected": [
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "/"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "*"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "/"
       }
     ]
@@ -3885,7 +3885,7 @@ return [
     "css": "red",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red"
       }
     ]
@@ -3895,14 +3895,14 @@ return [
     "css": "  \t\t\r\n\nRed ",
     "expected": [
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "Red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       }
     ]
   },
@@ -3911,11 +3911,11 @@ return [
     "css": "red/* CDC */-->",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red"
       },
       {
-        "type": "CDC"
+        "TYPE": "CDC"
       }
     ]
   },
@@ -3924,11 +3924,11 @@ return [
     "css": "red-->/* Not CDC */",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red--"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": ">"
       }
     ]
@@ -3938,108 +3938,108 @@ return [
     "css": "\\- red0 -red --red -\\-red\\ blue 0red -0red \x00red _Red .red rêd r\\êd \x7f\x80\x81",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red0"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "-red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "--red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "--red blue"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0,
-        "isInteger": true,
+        "type": "integer",
         "unit": "red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0,
-        "isInteger": true,
+        "type": "integer",
         "unit": "red",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "\uFFFDred"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "_Red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "."
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "rêd"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "rêd"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "\x7f"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "\x80"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "\x81"
       }
     ]
@@ -4049,91 +4049,91 @@ return [
     "css": "\\30red \\00030 red \\30\r\nred \\0000000red \\1100000red \\red \\r ed \\.red \\ red \\\nred \\376\\37 6\\000376\\0000376\\",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "0red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "0red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "0red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "\uFFFD0red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "\uFFFD0red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "r"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "ed"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": ".red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": " red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "\\"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "\u{0376}76\u{0376}76\uFFFD"
       }
     ]
@@ -4143,44 +4143,44 @@ return [
     "css": "rgba0('a' rgba1(a b rgba2(rgba3('b",
     "expected": [
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "rgba0",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "a"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "FUNCTION",
+            "TYPE": "FUNCTION",
             "name": "rgba1",
             "value": [
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "a"
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "b"
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
               {
-                "type": "FUNCTION",
+                "TYPE": "FUNCTION",
                 "name": "rgba2",
                 "value": [
                   {
-                    "type": "FUNCTION",
+                    "TYPE": "FUNCTION",
                     "name": "rgba3",
                     "value": [
                       {
-                        "type": "STRING",
+                        "TYPE": "STRING",
                         "value": "b"
                       }
                     ]
@@ -4198,136 +4198,136 @@ return [
     "css": "rgba0() -rgba() --rgba() -\\-rgba() 0rgba() -0rgba() _rgba() .rgba() rgbâ() \\30rgba() rgba () @rgba() #rgba()",
     "expected": [
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "rgba0",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "-rgba",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "--rgba",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "--rgba",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0,
-        "isInteger": true,
+        "type": "integer",
         "unit": "rgba"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "(",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0,
-        "isInteger": true,
+        "type": "integer",
         "unit": "rgba",
         "sign": "-"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "(",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "_rgba",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "."
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "rgba",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "rgbâ",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "0rgba",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "rgba"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "(",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "rgba"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "(",
         "value": []
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "rgba",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "(",
         "value": []
       }
@@ -4338,91 +4338,91 @@ return [
     "css": "@media0 @-Media @--media @-\\-media @0media @-0media @_media @.media @medİa @\\30 media\\",
     "expected": [
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "media0"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "-Media"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "--media"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "--media"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "@"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0,
-        "isInteger": true,
+        "type": "integer",
         "unit": "media"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "@"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0,
-        "isInteger": true,
+        "type": "integer",
         "unit": "media",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "_media"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "@"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "."
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "media"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "medİa"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "0media\uFFFD"
       }
     ]
@@ -4432,96 +4432,96 @@ return [
     "css": "#red0 #-Red #--red #-\\-red #0red #-0red #_Red #.red #rêd #êrd #\\.red\\",
     "expected": [
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "red0",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "-Red",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "--red",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "--red",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "0red",
-        "isIdent": false
+        "type": "unrestricted"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "-0red",
-        "isIdent": false
+        "type": "unrestricted"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "_Red",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "#"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "."
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "rêd",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": "êrd",
-        "isIdent": true
+        "type": "id"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "HASH",
+        "TYPE": "HASH",
         "value": ".red\uFFFD",
-        "isIdent": true
+        "type": "id"
       }
     ]
   },
@@ -4530,23 +4530,23 @@ return [
     "css": "p[example=\"\\\nfoo(int x) {\\\n   this.x = x;\\\n}\\\n\"]",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "p"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "[",
         "value": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "example"
           },
           {
-            "type": "DELIM",
+            "TYPE": "DELIM",
             "value": "="
           },
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "foo(int x) {   this.x = x;}"
           }
         ]
@@ -4558,41 +4558,41 @@ return [
     "css": "'' 'Lorem \"îpsum\"' 'a\\\nb' 'a\nb 'eof",
     "expected": [
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": ""
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "Lorem \"îpsum\""
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "ab"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADSTRING"
+        "TYPE": "BADSTRING"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "b"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "eof"
       }
     ]
@@ -4602,41 +4602,41 @@ return [
     "css": "\"\" \"Lorem 'îpsum'\" \"a\\\nb\" \"a\nb \"eof",
     "expected": [
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": ""
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "Lorem 'îpsum'"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "ab"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADSTRING"
+        "TYPE": "BADSTRING"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "b"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "eof"
       }
     ]
@@ -4646,14 +4646,14 @@ return [
     "css": "\"Lo\\rem \\130 ps\\u m\" '\\376\\37 6\\000376\\0000376\\",
     "expected": [
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "Lorem İpsu m"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "STRING",
+        "TYPE": "STRING",
         "value": "\u{0376}76\u{0376}76"
       }
     ]
@@ -4663,78 +4663,78 @@ return [
     "css": "url( '') url('Lorem \"îpsum\"'\n) url('a\\\nb' ) url('a\nb) url('eof",
     "expected": [
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": ""
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "Lorem \"îpsum\""
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "ab"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "BADSTRING"
+            "TYPE": "BADSTRING"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "b"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "eof"
           }
         ]
@@ -4746,7 +4746,7 @@ return [
     "css": "url(",
     "expected": [
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": ""
       }
     ]
@@ -4756,7 +4756,7 @@ return [
     "css": "url( \t",
     "expected": [
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": ""
       }
     ]
@@ -4766,75 +4766,75 @@ return [
     "css": "url(\"\") url(\"Lorem 'îpsum'\"\n) url(\"a\\\nb\" ) url(\"a\nb) url(\"eof",
     "expected": [
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": ""
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "Lorem 'îpsum'"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "ab"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "BADSTRING"
+            "TYPE": "BADSTRING"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "b"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "eof"
           }
         ]
@@ -4846,24 +4846,24 @@ return [
     "css": "url(\"Lo\\rem \\130 ps\\u m\") url('\\376\\37 6\\000376\\0000376\\",
     "expected": [
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "Lorem İpsu m"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "\u{0376}76\u{0376}76"
           }
         ]
@@ -4875,78 +4875,78 @@ return [
     "css": "URL(foo) Url(foo) ûrl(foo) url (foo) url\\ (foo) url(\t 'foo' ",
     "expected": [
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "foo"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "foo"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "ûrl",
         "value": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "foo"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "url"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "(",
         "value": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "foo"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url ",
         "value": [
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "foo"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "foo"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ]
       }
@@ -4957,38 +4957,38 @@ return [
     "css": "url('a' b) url('c' d)",
     "expected": [
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "a"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "b"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "STRING",
+            "TYPE": "STRING",
             "value": "c"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "d"
           }
         ]
@@ -5000,33 +5000,33 @@ return [
     "css": "url('a\nb) url('c\n",
     "expected": [
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "BADSTRING"
+            "TYPE": "BADSTRING"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "b"
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "url",
         "value": [
           {
-            "type": "BADSTRING"
+            "TYPE": "BADSTRING"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ]
       }
@@ -5037,99 +5037,99 @@ return [
     "css": "url() url( \t) url(\n Foô\\030\n!\n) url(\na\nb\n) url(a\\ b) url(a(b) url(a\\(b) url(a'b) url(a\\'b) url(a\"b) url(a\\\"b) url(a\nb) url(a\\\nb) url(a\\a b) url(a\\",
     "expected": [
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": ""
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": ""
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "Foô0!"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "a b"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "a(b"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "a'b"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "a\"b"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "a\nb"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "a\uFFFD"
       }
     ]
@@ -5139,7 +5139,7 @@ return [
     "css": "url(\x00!#$%&*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\x80\x81 ¡¢",
     "expected": [
       {
-        "type": "URL",
+        "TYPE": "URL",
         "value": "\uFFFD!#$%&*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\x80\x81 ¡¢"
       }
     ]
@@ -5149,169 +5149,169 @@ return [
     "css": "url(\x01) url(\x02) url(\x03) url(\x04) url(\x05) url(\x06) url(\x07) url(\x08) url(\x0b) url(\x0e) url(\x0f) url(\x10) url(\x11) url(\x12) url(\x13) url(\x14) url(\x15) url(\x16) url(\x17) url(\x18) url(\x19) url(\x1a) url(\x1b) url(\x1c) url(\x1d) url(\x1e) url(\x1f) url(\x7f)",
     "expected": [
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BADURL"
+        "TYPE": "BADURL"
       }
     ]
   },
@@ -5320,78 +5320,78 @@ return [
     "css": "12 +34 -45 .67 +.89 -.01 2.3 +45.0 -0.67",
     "expected": [
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true
+        "type": "integer"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 34,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -45,
-        "isInteger": true,
+        "type": "integer",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 0.67,
-        "isInteger": false
+        "type": "number"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 0.89,
-        "isInteger": false,
+        "type": "number",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -0.01,
-        "isInteger": false,
+        "type": "number",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 2.3,
-        "isInteger": false
+        "type": "number"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 45,
-        "isInteger": false,
+        "type": "number",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -0.67,
-        "isInteger": false,
+        "type": "number",
         "sign": "-"
       }
     ]
@@ -5401,78 +5401,78 @@ return [
     "css": "12e2 +34e+1 -45E-0 .68e+3 +.79e-1 -.01E2 2.3E+1 +45.0e6 -0.67e0",
     "expected": [
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1200,
-        "isInteger": false
+        "type": "number"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 340,
-        "isInteger": false,
+        "type": "number",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -45,
-        "isInteger": false,
+        "type": "number",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 680,
-        "isInteger": false
+        "type": "number"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 0.079,
-        "isInteger": false,
+        "type": "number",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -1,
-        "isInteger": false,
+        "type": "number",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 23,
-        "isInteger": false
+        "type": "number"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 45000000,
-        "isInteger": false,
+        "type": "number",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -0.67,
-        "isInteger": false,
+        "type": "number",
         "sign": "-"
       }
     ]
@@ -5482,16 +5482,16 @@ return [
     "css": "3. /* Decimal point must have following digits */",
     "expected": [
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 3,
-        "isInteger": true
+        "type": "integer"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "."
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       }
     ]
   },
@@ -5500,13 +5500,13 @@ return [
     "css": "3\\65-2 /* Scientific notation E can not be escaped */",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 3,
-        "isInteger": true,
+        "type": "integer",
         "unit": "e-2"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       }
     ]
   },
@@ -5515,17 +5515,17 @@ return [
     "css": "3e-2.1 /* Integer exponents only */",
     "expected": [
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 0.03,
-        "isInteger": false
+        "type": "number"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 0.1,
-        "isInteger": false
+        "type": "number"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       }
     ]
   },
@@ -5534,68 +5534,68 @@ return [
     "css": "12% +34% -45% .67% +.89% -.01% 2.3% +45.0% -0.67%",
     "expected": [
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 12
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 34,
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": -45,
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 0.67
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 0.89,
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": -0.01,
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 2.3
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 45,
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": -0.67,
         "sign": "-"
       }
@@ -5606,68 +5606,68 @@ return [
     "css": "12e2% +34e+1% -45E-0% .68e+3% +.79e-1% -.01E2% 2.3E+1% +45.0e6% -0.67e0%",
     "expected": [
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 1200
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 340,
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": -45,
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 680
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 0.079,
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": -1,
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 23
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": 45000000,
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "PERCENTAGE",
+        "TYPE": "PERCENTAGE",
         "value": -0.67,
         "sign": "-"
       }
@@ -5678,13 +5678,13 @@ return [
     "css": "12\\% /* Percent sign can not be escaped */",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "%"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       }
     ]
   },
@@ -5693,86 +5693,86 @@ return [
     "css": "12px +34px -45px .67px +.89px -.01px 2.3px +45.0px -0.67px",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "px"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 34,
-        "isInteger": true,
+        "type": "integer",
         "unit": "px",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": -45,
-        "isInteger": true,
+        "type": "integer",
         "unit": "px",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0.67,
-        "isInteger": false,
+        "type": "number",
         "unit": "px"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0.89,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": -0.01,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 2.3,
-        "isInteger": false,
+        "type": "number",
         "unit": "px"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 45,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": -0.67,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "-"
       }
@@ -5783,86 +5783,86 @@ return [
     "css": "12e2px +34e+1px -45E-0px .68e+3px +.79e-1px -.01E2px 2.3E+1px +45.0e6px -0.67e0px",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 1200,
-        "isInteger": false,
+        "type": "number",
         "unit": "px"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 340,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": -45,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 680,
-        "isInteger": false,
+        "type": "number",
         "unit": "px"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0.079,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": -1,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 23,
-        "isInteger": false,
+        "type": "number",
         "unit": "px"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 45000000,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": -0.67,
-        "isInteger": false,
+        "type": "number",
         "unit": "px",
         "sign": "-"
       }
@@ -5873,103 +5873,103 @@ return [
     "css": "12red0 12.0-red 12--red 12-\\-red 120red 12-0red 12\x00red 12_Red 12.red 12rêd",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "red0"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": false,
+        "type": "number",
         "unit": "-red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "--red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "--red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 120,
-        "isInteger": true,
+        "type": "integer",
         "unit": "red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true
+        "type": "integer"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 0,
-        "isInteger": true,
+        "type": "integer",
         "unit": "red",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "\uFFFDred"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "_Red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true
+        "type": "integer"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "."
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "red"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "unit": "rêd"
       }
     ]
@@ -5979,91 +5979,91 @@ return [
     "css": "u+1 U+10 U+100 U+1000 U+10000 U+100000 U+1000000",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1000000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       }
     ]
@@ -6073,117 +6073,117 @@ return [
     "css": "u+? u+1? U+10? U+100? U+1000? U+10000? U+100000?",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       }
     ]
@@ -6193,124 +6193,124 @@ return [
     "css": "u+?? U+1?? U+10?? U+100?? U+1000?? U+10000??",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       }
     ]
@@ -6320,123 +6320,123 @@ return [
     "css": "u+??? U+1??? U+10??? U+100??? U+1000???",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       }
     ]
@@ -6446,114 +6446,114 @@ return [
     "css": "u+???? U+1???? U+10???? U+100????",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       }
     ]
@@ -6563,97 +6563,97 @@ return [
     "css": "u+????? U+1????? U+10?????",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       }
     ]
@@ -6663,72 +6663,72 @@ return [
     "css": "u+?????? U+1??????",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       }
     ]
@@ -6738,76 +6738,76 @@ return [
     "css": "u+1-2 U+100000-2 U+1000000-2 U+10-200000",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -2,
-        "isInteger": true,
+        "type": "integer",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 100000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -2,
-        "isInteger": true,
+        "type": "integer",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1000000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -2,
-        "isInteger": true,
+        "type": "integer",
         "sign": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 10,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -200000,
-        "isInteger": true,
+        "type": "integer",
         "sign": "-"
       }
     ]
@@ -6817,134 +6817,134 @@ return [
     "css": "ù+12 Ü+12 u +12 U+ 12 U+12 - 20 U+1?2 U+1?-50",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "ù"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "Ü"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "u"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true
+        "type": "integer"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 12,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "-"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 20,
-        "isInteger": true
+        "type": "integer"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 2,
-        "isInteger": true
+        "type": "integer"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "U"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "?"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": -50,
-        "isInteger": true,
+        "type": "integer",
         "sign": "-"
       }
     ]
@@ -6954,15 +6954,15 @@ return [
     "css": "3n+1",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 3,
-        "isInteger": true,
+        "type": "integer",
         "unit": "n"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       }
     ]
@@ -6972,16 +6972,16 @@ return [
     "css": "+3n+1",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": 3,
-        "isInteger": true,
+        "type": "integer",
         "unit": "n",
         "sign": "+"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       }
     ]
@@ -6991,16 +6991,16 @@ return [
     "css": "-3n+1",
     "expected": [
       {
-        "type": "DIMENSION",
+        "TYPE": "DIMENSION",
         "value": -3,
-        "isInteger": true,
+        "type": "integer",
         "unit": "n",
         "sign": "-"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 1,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       }
     ]
@@ -7010,13 +7010,13 @@ return [
     "css": "n+2",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "n"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 2,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       }
     ]
@@ -7026,17 +7026,17 @@ return [
     "css": "+n+2",
     "expected": [
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "+"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "n"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 2,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       }
     ]
@@ -7046,13 +7046,13 @@ return [
     "css": "-n+2",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "-n"
       },
       {
-        "type": "NUMBER",
+        "TYPE": "NUMBER",
         "value": 2,
-        "isInteger": true,
+        "type": "integer",
         "sign": "+"
       }
     ]
@@ -7062,84 +7062,84 @@ return [
     "css": "~=|=^=$=*=||<!------> |/**/| ~/**/=",
     "expected": [
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "~"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "="
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "|"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "="
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "^"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "="
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "$"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "="
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "*"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "="
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "|"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "|"
       },
       {
-        "type": "CDO"
+        "TYPE": "CDO"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "----"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": ">"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "|"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "|"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "~"
       },
       {
-        "type": "DELIM",
+        "TYPE": "DELIM",
         "value": "="
       }
     ]
@@ -7149,132 +7149,132 @@ return [
     "css": "a:not([href^=http\\:],  [href ^=\t'https\\:'\n]) { color: rgba(0%, 100%, 50%); }",
     "expected": [
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "a"
       },
       {
-        "type": "COLON"
+        "TYPE": "COLON"
       },
       {
-        "type": "FUNCTION",
+        "TYPE": "FUNCTION",
         "name": "not",
         "value": [
           {
-            "type": "BLOCK",
+            "TYPE": "BLOCK",
             "name": "[",
             "value": [
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "href"
               },
               {
-                "type": "DELIM",
+                "TYPE": "DELIM",
                 "value": "^"
               },
               {
-                "type": "DELIM",
+                "TYPE": "DELIM",
                 "value": "="
               },
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "http:"
               }
             ]
           },
           {
-            "type": "COMMA"
+            "TYPE": "COMMA"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "BLOCK",
+            "TYPE": "BLOCK",
             "name": "[",
             "value": [
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "href"
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
               {
-                "type": "DELIM",
+                "TYPE": "DELIM",
                 "value": "^"
               },
               {
-                "type": "DELIM",
+                "TYPE": "DELIM",
                 "value": "="
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
               {
-                "type": "STRING",
+                "TYPE": "STRING",
                 "value": "https:"
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               }
             ]
           }
         ]
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "{",
         "value": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "IDENT",
+            "TYPE": "IDENT",
             "value": "color"
           },
           {
-            "type": "COLON"
+            "TYPE": "COLON"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "FUNCTION",
+            "TYPE": "FUNCTION",
             "name": "rgba",
             "value": [
               {
-                "type": "PERCENTAGE",
+                "TYPE": "PERCENTAGE",
                 "value": 0
               },
               {
-                "type": "COMMA"
+                "TYPE": "COMMA"
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
               {
-                "type": "PERCENTAGE",
+                "TYPE": "PERCENTAGE",
                 "value": 100
               },
               {
-                "type": "COMMA"
+                "TYPE": "COMMA"
               },
               {
-                "type": "WHITESPACE"
+                "TYPE": "WHITESPACE"
               },
               {
-                "type": "PERCENTAGE",
+                "TYPE": "PERCENTAGE",
                 "value": 50
               }
             ]
           },
           {
-            "type": "SEMICOLON"
+            "TYPE": "SEMICOLON"
           },
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           }
         ]
       }
@@ -7285,55 +7285,55 @@ return [
     "css": "@media print { (foo]{bar) }baz",
     "expected": [
       {
-        "type": "AT-KEYWORD",
+        "TYPE": "AT-KEYWORD",
         "value": "media"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "IDENT",
+        "TYPE": "IDENT",
         "value": "print"
       },
       {
-        "type": "WHITESPACE"
+        "TYPE": "WHITESPACE"
       },
       {
-        "type": "BLOCK",
+        "TYPE": "BLOCK",
         "name": "{",
         "value": [
           {
-            "type": "WHITESPACE"
+            "TYPE": "WHITESPACE"
           },
           {
-            "type": "BLOCK",
+            "TYPE": "BLOCK",
             "name": "(",
             "value": [
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "foo"
               },
               {
-                "type": "CLOSE-SQUARE"
+                "TYPE": "CLOSE-SQUARE"
               },
               {
-                "type": "BLOCK",
+                "TYPE": "BLOCK",
                 "name": "{",
                 "value": [
                   {
-                    "type": "IDENT",
+                    "TYPE": "IDENT",
                     "value": "bar"
                   },
                   {
-                    "type": "CLOSE-PAREN"
+                    "TYPE": "CLOSE-PAREN"
                   },
                   {
-                    "type": "WHITESPACE"
+                    "TYPE": "WHITESPACE"
                   }
                 ]
               },
               {
-                "type": "IDENT",
+                "TYPE": "IDENT",
                 "value": "baz"
               }
             ]
@@ -7355,25 +7355,25 @@ return [
     "expected": [
       [
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "foo"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         }
       ],
       [
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "bar"
         }
       ],
       [
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "baz"
         }
       ]
@@ -7385,30 +7385,30 @@ return [
     "expected": [
       [
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "foo"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "bar"
         }
       ],
       [
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "baz"
         },
         {
-          "type": "WHITESPACE"
+          "TYPE": "WHITESPACE"
         },
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "qua"
         }
       ]
@@ -7420,16 +7420,16 @@ return [
     "expected": [
       [
         {
-          "type": "IDENT",
+          "TYPE": "IDENT",
           "value": "foo"
         },
         {
-          "type": "BLOCK",
+          "TYPE": "BLOCK",
           "name": "{",
           "value": []
         },
         {
-          "type": "CLOSE-CURLY"
+          "TYPE": "CLOSE-CURLY"
         }
       ]
     ]
@@ -7440,18 +7440,18 @@ return [
     "expected": [
       [
         {
-          "type": "FUNCTION",
+          "TYPE": "FUNCTION",
           "name": "var",
           "value": [
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "--abc"
             },
             {
-              "type": "COMMA"
+              "TYPE": "COMMA"
             },
             {
-              "type": "IDENT",
+              "TYPE": "IDENT",
               "value": "--def"
             }
           ]
